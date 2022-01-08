@@ -1,8 +1,8 @@
 import axios from "axios";
 import { sortByRank } from "../utils/Sorting";
 
-const base_url = "http://localhost:8080/";
-
+const base_url = process.env.REACT_APP_BASE_URL;
+console.log(process.env)
 export const getAllPlayers = () =>
   new Promise((resolve, reject) => {
     axios.get(base_url + 'api/players')
@@ -11,7 +11,7 @@ export const getAllPlayers = () =>
       resolve(players.data.sort(sortByRank));
     })
     .catch(() => {
-      reject(`Error getting user with id : ${player_id}, please try again later`);
+      reject(`Error getting all players , please try again later`);
     });
   });
 
